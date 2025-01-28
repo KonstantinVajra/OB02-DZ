@@ -35,10 +35,11 @@ class Admin(User):
         print(f"User {user.get_name()} (ID: {user.get_user_id()}) added.")
 
     def remove_user(self, user_list: list, user_id: int):
-        user_to_remove = next((user for user in user_list if user.get_user_id() == user_id), None)
-        if user_to_remove:
-            user_list.remove(user_to_remove)
-            print(f"User {user_to_remove.get_name()} (ID: {user_id}) removed.")
+        for user in user_list:
+            if user.get_user_id() == user_id:
+                user_list.remove(user)
+                print(f"User {user.get_name()} (ID: {user_id}) removed.")
+                break
         else:
             print(f"User with ID {user_id} not found.")
 
